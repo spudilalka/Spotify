@@ -5,6 +5,7 @@ import 'package:hive/hive.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:spotify/data%20base.dart';
 import 'package:spotify/pages/get%20started.dart';
 import 'package:spotify/pages/reg%20or%20sign.dart';
 import 'package:spotify/theme.dart';
@@ -21,11 +22,15 @@ Color bgColor = Colors.white;
 class _ChooseModeState extends State<ChooseMode> {
   int? isLight;
   CurTheme them = CurTheme();
+  // final _myBox = Hive.box('theme');
+
+  // ThemeDB db = new ThemeDB();
 
   @override
   void initState() {
     super.initState();
-
+    // final prefs = await SharedPreferences.getInstance();
+    // db.loadData;
     // getTheme();
   }
 
@@ -50,11 +55,10 @@ class _ChooseModeState extends State<ChooseMode> {
   }
 
   Future<void> getTheme() async {
-    // var box = Hive.box('myBox');
+    // print('object');
+    // _myBox.put('name', 'David');
 
-    // box.put('name', 'David');
-
-    // var name = box.get('name');
+    // var name = _myBox.get('name');
 
     // print('Name: $name');
 
@@ -73,9 +77,8 @@ class _ChooseModeState extends State<ChooseMode> {
     // final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     // isLight = await prefs.getInt('them');
-    // setState(() {
-    //
-    // });
+    // print(isLight);
+    // setState(() {});
   }
 
   @override
@@ -117,6 +120,7 @@ class _ChooseModeState extends State<ChooseMode> {
                               onTap: () {
                                 setState(() {
                                   them.setDark();
+                                  setTheme(34);
                                 });
                               },
                               child: ClipRect(
@@ -153,7 +157,7 @@ class _ChooseModeState extends State<ChooseMode> {
                               onTap: () {
                                 setState(() {
                                   them.setLight();
-                                  // setTheme(3);
+                                  setTheme(3);
                                 });
                               },
                               child: ClipRect(

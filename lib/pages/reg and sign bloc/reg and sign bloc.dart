@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'reg and sign event.dart';
 import 'reg and sign state.dart';
 
-class ConvertBloc extends Bloc<RegOrSignEvent, RegOrSignState> {
-  ConvertBloc() : super(const RegOrSignState()) {
+class RegOrSignBloc extends Bloc<RegOrSignEvent, RegOrSignState> {
+  RegOrSignBloc() : super(const RegOrSignState()) {
     on<RegOrSignEvent>((event, emit) async {
       if (event is GetUsername) {
         await getUsername(event, state, emit);

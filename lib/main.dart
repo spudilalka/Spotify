@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:spotify/pages/choose%20mode.dart';
 import 'package:spotify/pages/get%20started.dart';
+import 'package:spotify/pages/reg%20and%20sign%20bloc/reg%20view.dart';
+import 'package:spotify/pages/reg%20and%20sign%20bloc/sign%20view.dart';
 import 'package:spotify/pages/reg%20or%20sign.dart';
 import 'package:spotify/pages/splash%20screen.dart';
 
-void main() {
-  SharedPreferences.setMockInitialValues({});
+void main() async {
+  // SharedPreferences.setMockInitialValues({});
 
-  WidgetsFlutterBinding.ensureInitialized();
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Hive.initFlutter();
+
+  // var box = Hive.openBox('theme');
 
   runApp(const MyApp());
 }

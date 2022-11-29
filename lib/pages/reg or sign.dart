@@ -5,7 +5,10 @@ import 'package:hive/hive.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:spotify/pages/choose%20mode.dart';
 import 'package:spotify/pages/get%20started.dart';
+import 'package:spotify/pages/reg%20and%20sign%20bloc/reg%20view.dart';
+import 'package:spotify/pages/reg%20and%20sign%20bloc/sign%20view.dart';
 import 'package:spotify/theme.dart';
 
 class RegOrSign extends StatefulWidget {
@@ -24,10 +27,38 @@ class _RegOrSign extends State<RegOrSign> {
   bool isSign = false;
   // Color dd = colors
 
+  Future<void> getTheme() async {
+    // var box = Hive.box('myBox');
+
+    // box.put('name', 'David');
+
+    // var name = box.get('name');
+
+    // print('Name: $name');
+
+////////////////////////////////////////////
+
+    // final box = Hive.box('theme');
+
+    // if (box.isEmpty) {
+    //   print('box is empty!!');
+    // } else {
+    //   isLight = box.get('isLight');
+    // }
+
+    ///////////////////////////////////////////
+
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    isLight = await prefs.getInt('them');
+    print(isLight);
+    setState(() {});
+  }
+
   @override
   void initState() {
     super.initState();
-
+    getTheme();
     // getTheme();
   }
 
@@ -36,7 +67,7 @@ class _RegOrSign extends State<RegOrSign> {
       onTap: (() {
         if (isreg == true) {
           Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => RegOrSign()));
+              context, MaterialPageRoute(builder: (context) => SignPage()));
         } else {
           setState(() {
             isreg = true;
@@ -74,7 +105,7 @@ class _RegOrSign extends State<RegOrSign> {
       onTap: (() {
         if (isSign == true) {
           Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => RegOrSign()));
+              context, MaterialPageRoute(builder: (context) => RegPage()));
         } else {
           setState(() {
             isreg = false;
@@ -127,35 +158,6 @@ class _RegOrSign extends State<RegOrSign> {
     // await prefs.setInt('them', a);
   }
 
-  Future<void> getTheme() async {
-    // var box = Hive.box('myBox');
-
-    // box.put('name', 'David');
-
-    // var name = box.get('name');
-
-    // print('Name: $name');
-
-////////////////////////////////////////////
-
-    // final box = Hive.box('theme');
-
-    // if (box.isEmpty) {
-    //   print('box is empty!!');
-    // } else {
-    //   isLight = box.get('isLight');
-    // }
-
-    ///////////////////////////////////////////
-
-    // final SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    // isLight = await prefs.getInt('them');
-    // setState(() {
-    //
-    // });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -169,6 +171,43 @@ class _RegOrSign extends State<RegOrSign> {
         )),
         child: Column(
           children: [
+            Container(
+              padding: EdgeInsets.only(top: 35, left: 27),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ChooseMode()));
+                      });
+                    },
+                    child: ClipRect(
+                      child: Container(
+                        width: 35,
+                        height: 37,
+                        margin: EdgeInsets.only(left: 5, right: 85),
+                        child: new Container(
+                          width: 20.0,
+                          height: 20.0,
+                          decoration: new BoxDecoration(
+                            color: Colors.grey.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(35),
+                          ),
+                          child: Icon(
+                            Icons.arrow_back_ios_rounded,
+                            size: 15,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Spacer(
               flex: 1,
             ),
